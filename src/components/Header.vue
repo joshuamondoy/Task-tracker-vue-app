@@ -1,7 +1,7 @@
 <template>
     <header>
         <h1>{{ title }}</h1> <!--use the props here-->
-        <Button text="Add task" color="green" />
+        <Button text="Add task" color="white" />
     </header>
 </template>
 
@@ -24,6 +24,7 @@ export default {
         justify-content: space-between;
         align-items: center;
         margin-bottom: 20px;
+        border: 1px solid orange;
     }
     
 </style>
