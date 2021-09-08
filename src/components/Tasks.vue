@@ -17,7 +17,8 @@ export default {
     },
     components: {
         Task
-    }
+    }, 
+    emits: ['delete-a-task'] //this is use just not to get a warning regarding the @delete-a-task emit
 }
 </script>
 
