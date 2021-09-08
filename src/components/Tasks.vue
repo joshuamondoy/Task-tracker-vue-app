@@ -1,8 +1,8 @@
 <template>
     <div class="tasks-container">
         <!--the name of class will depends if task.reminder is true then it will be named 'reminder else leave it empty or default named'task'-->
-        <div :key='task.id' v-for="task in theTasks">
-         <Task :aTask="task" />
+        <div :key='singleTask.id' v-for="singleTask in allTasks">
+            <Task :singleTask="singleTask" @delete-task="$emit('delete-a-task', singleTask.id)"/> <!---emit here does the same as the emit on Task.vue--->
         </div>
     </div>
 </template>
@@ -13,7 +13,7 @@ import Task from './Task'
 export default {
     name: 'Tasks',
     props: {
-        theTasks: Array,
+        allTasks: Array,
     },
     components: {
         Task

@@ -4,7 +4,7 @@
 <h1>Each component is divided by borders</h1>
   <div class="container">
     <Header title="Task Tracker"/> <!--pass the value of title here are passed through props that will be used in the Header components--->
-    <Tasks :theTasks="tasks" fontStyle="italic" /> <!--this component can be reuse-->
+    <Tasks :allTasks="tasks" @delete-a-task="deleteTask"/> <!--this component can be reuse-->
     
   </div>
 </template>
@@ -26,7 +26,13 @@ export default {
     return {
       tasks: [], //declared tasks as empty array before it is created
     }
+    
   },
+  methods: {
+    deleteTask(id) {
+      console.log('task', id)
+    }
+  }, 
   created() {
     this.tasks = [ //dummy data for the tasks array
       {

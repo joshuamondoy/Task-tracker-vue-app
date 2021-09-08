@@ -1,21 +1,21 @@
 <template>
-    <div class="task"  :class="[aTask.reminder ? 'reminder' : '']">
+    <div class="task"  :class="[singleTask.reminder ? 'reminder' : '']">
         <h3>
-            {{aTask.text}}
-            <i @click="onDelete(aTask.id)" class="fas fa-times"></i>
+            {{singleTask.text}}
+            <i @click="onDelete(singleTask.id)" class="fas fa-times"></i>
         </h3>
-        <p>{{aTask.day}}</p>
+        <p>{{singleTask.day}}</p>
     </div>
 </template>
 <script>
 export default {
     name: "Task",
     props: {
-        aTask: String
+        singleTask: Object
     },
     methods: {
         onDelete(id) {
-            console.log(id)
+            this.$emit('delete-task', id) //we need to the $emit because the data we need to delete is not located in this components, it is in the App.vue
         }
     }
 }
