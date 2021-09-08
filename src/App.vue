@@ -4,7 +4,7 @@
 <h1>Each component is divided by borders</h1>
   <div class="container">
     <Header title="Task Tracker"/> <!--pass the value of title here are passed through props that will be used in the Header components--->
-    <Tasks :allTasks="tasks" @delete-a-task="deleteTask"/> <!--this component can be reuse-->
+    <Tasks :allTasks="tasks" @delete-a-task="deleteTask" @toggle-reminder="toggleReminder" /> <!--this component can be reuse-->
     
   </div>
 </template>
@@ -28,9 +28,15 @@ export default {
     }
     
   },
+  emits: ['toggle-reminder', 'delete-a-task'], //just for the warning on using emit
   methods: {
     deleteTask(id) {
       this.tasks = this.tasks.filter((task) => task.id !== id)
+      //what happened here is we reset the value of tasks exept the task that has the id being selected, basically remove all the value of the tasks array then bring back all except single task with the id that's being selected upon click
+    },
+    toggleReminder(id) {
+      this.tasks = this.tasks.map((task) => task.id === id ? {...task, reminder: !task.reminder}: task)
+      //what happened here is basically we just update the value of tasks array by using .map, upon double click all the value of the tasks array will be replace with the same value except that the task with the id being selected the value of the reminder will be the opposite of the old value, so if true it will be false and vice versa
     }
   }, 
   created() {

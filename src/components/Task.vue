@@ -1,8 +1,8 @@
 <template>
-    <div class="task"  :class="[singleTask.reminder ? 'reminder' : '']">
+    <div class="task" @dblclick="$emit('toggle-reminder', singleTask.id)" :class="[singleTask.reminder ? 'reminder' : '']">
         <h3>
             {{singleTask.text}}
-            <i @click="onDelete(singleTask.id)" class="fas fa-times"></i>
+            <i @click="$emit('delete-task', singleTask.id)" class="fas fa-times"></i>
         </h3>
         <p>{{singleTask.day}}</p>
     </div>
@@ -13,11 +13,7 @@ export default {
     props: {
         singleTask: Object
     },
-    methods: {
-        onDelete(id) {
-            this.$emit('delete-task', id) //we need to the $emit because the data we need to delete is not located in this components, it is in the App.vue
-        }
-    }
+    emits: ['delete-task', 'toggle-reminder']
 }
 </script>
 
