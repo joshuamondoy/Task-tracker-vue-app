@@ -24,6 +24,7 @@ export default {
         padding-left: 1rem;
         text-align: left;
         border: 1px solid gold;
+        cursor: pointer;
     }
     .task:hover{
         background: rgb(204, 204, 204);
