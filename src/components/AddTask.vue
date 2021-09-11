@@ -38,18 +38,18 @@ export default {
         e.preventDefault() //preventDefault() is often called when handling events to prevent the browsers default behavior. since we just want to display it on the webpage we can use @submit.prevent="methodHere"
         if(!this.text) {
           alert('Please add a task')
+        } else {
+          const newTask = {
+            id: Math.floor(Math.random() * 100000),
+            text: this.text,
+            day: this.day,
+            reminder: this.reminder
+          }
+          this.$emit('add-task', newTask) //emit the new data object to App.vue
+          this.text = ''
+          this.day = ''
+          this.reminder = false
         }
-        const newTask = {
-          id: Math.floor(Math.random() * 100000),
-          text: this.text,
-          day: this.day,
-          reminder: this.reminder
-        }
-        this.$emit('add-task', newTask) //emit the new data object to App.vue
-
-        this.text = ''
-        this.day = ''
-        this.reminder = false
       }
     }
 }
